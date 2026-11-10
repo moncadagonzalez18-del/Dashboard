@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cronograma de implementación</title>
+<style>
+:root{--bg:#fff;--tx:#1f2a44;--mut:#5f6b7a;--alt:#eef3f6;--bd:#dfe3e8;--hd:#1f2a44;--navy:#1f2a44;--green:#2e7d32;--teal:#00897b;--gold:#b8860b;--red:#c62828;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141922;--tx:#e8ecf2;--mut:#9aa7b8;--alt:#1b2230;--bd:#2c3646;--hd:#2a3a5c;--navy:#4a5f8f;--green:#3f9d45;--teal:#13a898;--gold:#d09a1c;--red:#e04b4b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141922;--tx:#e8ecf2;--mut:#9aa7b8;--alt:#1b2230;--bd:#2c3646;--hd:#2a3a5c;--navy:#4a5f8f;--green:#3f9d45;--teal:#13a898;--gold:#d09a1c;--red:#e04b4b;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 40px}
+h1{font-size:24px;margin:0 0 10px;text-transform:uppercase}
+p.sub{margin:0 0 20px;color:var(--tx);font-size:14px}
+.scroll{overflow-x:auto}
+.chart{min-width:760px}
+.row{display:grid;grid-template-columns:270px 1fr;min-height:46px;align-items:stretch}
+.row.head{min-height:36px}
+.lab{padding:6px 10px;display:flex;flex-direction:column;justify-content:center;font-size:13px;border-right:1px solid var(--bd)}
+.lab small{color:var(--mut);font-size:11px;margin-top:2px}
+.row:nth-child(even) .lab,.row:nth-child(even) .track{background:var(--alt)}
+.weeks{display:grid;grid-template-columns:repeat(7,1fr);background:var(--hd);color:#fff;font-weight:bold;font-size:12px}
+.weeks div{display:flex;align-items:center;justify-content:center}
+.track{position:relative;background-image:repeating-linear-gradient(90deg,transparent 0 calc(14.2857% - 1px),var(--bd) calc(14.2857% - 1px) 14.2857%)}
+.bar{position:absolute;top:9px;height:28px;border-radius:2px;color:#fff;font-size:11px;font-weight:bold;display:flex;align-items:center;padding-left:6px;white-space:nowrap;overflow:hidden}
+.ms{margin-top:14px;color:var(--red);font-size:13px;font-weight:bold}
+.note{margin-top:10px;color:var(--mut);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Cronograma de implementación</h1>
+<p class="sub">Herramienta que establece el tiempo de cada actividad, sus responsables y la secuencia según dependencias para el proyecto de ciclo de vida del software de las UTS (GitLab, SonarQube, Selenium y Docker).</p>
+<div class="scroll"><div class="chart">
+<div class="row head"><div></div><div class="weeks"><div>S1</div><div>S2</div><div>S3</div><div>S4</div><div>S5</div><div>S6</div><div>S7</div></div></div>
+<div id="rows"></div>
+</div></div>
+<div class="ms">◆ Hito de cierre: documentación y capacitación completadas (semana 7, día 43)</div>
+<p class="note">Días calendario (7 por semana). Inicio y fin de cada barra salen de las dependencias de la tabla de actividades. Responsables y duraciones son propuestas del equipo, no provienen del PETI.</p>
+</div>
+<script>
+const A=[
+["1. Validar requisitos con TIC","Equipo del proyecto y coordinador de TIC",0,5,"navy"],
+["2. Provisionar entornos (Dev, QA, Prod)","Equipo de infraestructura UTS",5,10,"green"],
+["3. Instalar y configurar GitLab","Equipo técnico",15,7,"teal"],
+["4. Roles, permisos y datos de prueba","Coordinador de TIC y seguridad",22,4,"gold"],
+["5. Pipeline CI/CD con Docker","Ingeniero DevOps / equipo técnico",22,10,"green"],
+["6. Integrar SonarQube (SAST)","Responsable de seguridad",32,5,"navy"],
+["7. Integrar Selenium (pruebas QA)","Equipo de calidad (QA)",32,6,"teal"],
+["8. Documentación y capacitación","Equipo técnico y proveedor de capacitación",38,5,"red"]
+];
+const N=49;
+document.getElementById("rows").innerHTML=A.map(a=>`<div class="row"><div class="lab">${a[0]}<small>${a[1]}</small></div><div class="track"><div class="bar" style="left:${a[2]/N*100}%;width:${a[3]/N*100}%;background:var(--${a[4]})">${a[3]} d</div></div></div>`).join("");
+</script>
+</body>
+</html>

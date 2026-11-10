@@ -1,0 +1,6 @@
+{
+  "name": "UTS Ciclo de Vida del Software - Dashboard de Gestión",
+  "description": "Dashboard interactivo para la gestión y cronograma de implementación del ciclo de vida del software en las UTS con GitLab, SonarQube, Selenium y Docker.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
